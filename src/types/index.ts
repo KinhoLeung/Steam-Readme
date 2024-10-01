@@ -3,7 +3,6 @@ export interface SteamGameInfo {
   name: string;
   playtime_2weeks: number;
   playtime_forever: number;
-  img_icon_url: string;
   img_capsule_url: string;
   last_played: number;
   achievements: {
@@ -12,7 +11,3 @@ export interface SteamGameInfo {
   };
 }
 
-export interface SvgData {
-  recentGame: SteamGameInfo | null;
-  theme: string;
-}
