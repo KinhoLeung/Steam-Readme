@@ -11,5 +11,16 @@
       "src": "/(.*)",
       "dest": "/src/api/svg.ts"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.svg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/svg+xml"
+        }
+      ]
+    }
   ]
 }
