@@ -6,10 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/src/api/svg.ts"
+      "source": "/(.*)",
+      "destination": "/src/api/svg.ts"
     }
   ],
   "headers": [
