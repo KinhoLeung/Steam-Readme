@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-
+import axios from 'axios';
 import * as http from 'http';
 import * as url from 'url';
 import { fetchRecentGame } from '../services/steamApi';
@@ -14,6 +14,17 @@ function errorHandler(error: unknown, res: http.ServerResponse) {
   }
   res.writeHead(500, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ error: '生成SVG时出现内部服务器错误', details: error instanceof Error ? error.message : String(error) }));
+}
+
+function formatPlaytime(minutes: number): string {
+  if (minutes < 60) {
+    return `${minutes} 分钟`;
+  }
+  return `${Math.round(minutes / 60)} 小时`;
+}
+
+function formatLastPlayed(timestamp: number): string {
+  return new Date(timestamp * 1000).toLocaleDateString('zh-CN');
 }
 
 async function handler(req: http.IncomingMessage, res: http.ServerResponse) {
@@ -30,13 +41,40 @@ async function handler(req: http.IncomingMessage, res: http.ServerResponse) {
     const theme = parsedUrl.query.theme as string || 'light';
 
     const recentGame = await fetchRecentGame(steamId, apiKey);
-    const svgContent = generateSvg({ recentGame, theme });
+    
+    if (!recentGame) {
+      throw new Error('无法获取最近游戏信息');
+    }
+
+    // 下载游戏封面图片
+    const imageUrl = recentGame.img_capsule_url; // 假设recentGame对象包含image_url属性
+    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+    const imageBuffer = Buffer.from(response.data, 'binary');
+    
+    // 将图片转换为 base64
+    const base64Image = imageBuffer.toString('base64');
+    
+    // 创建包含 base64 编码图片和游戏信息的 SVG
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="600" height="220">
+        <style>
+          .game-name { fill: ${theme === 'dark' ? '#ffffff' : '#000000'}; font-size: 20px; font-weight: bold; }
+          .game-info { fill: ${theme === 'dark' ? '#A0A0A0' : '#A0A0A0'}; font-size: 14px; }
+        </style>
+        <image href="data:image/jpeg;base64,${base64Image}" x="20" y="20" width="300" height="140"/>
+        <text x="340" y="40" class="game-name">${recentGame.name}</text>
+        <text x="340" y="70" class="game-info">Playtime 2weeks: ${formatPlaytime(recentGame.playtime_2weeks)}</text>
+        <text x="340" y="100" class="game-info">Playtime forever: ${formatPlaytime(recentGame.playtime_forever)}</text>
+        <text x="340" y="130" class="game-info">Last played: ${formatLastPlayed(recentGame.last_played)}</text>
+        <text x="340" y="160" class="game-info">Achievements: ${recentGame.achievements.completed}/${recentGame.achievements.total}</text>
+      </svg>
+    `;
 
     res.writeHead(200, {
       'Content-Type': 'image/svg+xml',
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate'
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
     });
-    res.end(svgContent);
+    res.end(svg);
   } catch (error) {
     errorHandler(error, res);
   }
