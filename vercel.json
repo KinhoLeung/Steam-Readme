@@ -14,11 +14,19 @@
   ],
   "headers": [
     {
-      "source": "/(.*)\\.svg",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Type",
           "value": "image/svg+xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
