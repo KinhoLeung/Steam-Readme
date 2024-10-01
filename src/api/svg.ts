@@ -53,17 +53,17 @@ async function handler(req: http.IncomingMessage, res: http.ServerResponse) {
     const base64Image = imageBuffer.toString('base64');
 
     const svg = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="600" height="220">
+      <svg xmlns="http://www.w3.org/2000/svg" width="540" height="163">
         <style>
           .game-name { fill: ${theme === 'dark' ? '#ffffff' : '#000000'}; font-size: 20px; font-weight: bold; }
           .game-info { fill: ${theme === 'dark' ? '#ffffff' : '#000000'}; font-size: 14px; }
         </style>
-        <image href="data:image/jpeg;base64,${base64Image}" x="20" y="20" width="300" height="140"/>
-        <text x="340" y="40" class="game-name">${recentGame.name}</text>
-        <text x="340" y="70" class="game-info">Playtime 2weeks: ${formatPlaytime(recentGame.playtime_2weeks)}</text>
-        <text x="340" y="100" class="game-info">Playtime forever: ${formatPlaytime(recentGame.playtime_forever)}</text>
-        <text x="340" y="130" class="game-info">Last played: ${formatLastPlayed(recentGame.last_played)}</text>
-        <text x="340" y="160" class="game-info">Achievements: ${recentGame.achievements.completed}/${recentGame.achievements.total}</text>
+        <image href="data:image/jpeg;base64,${base64Image}" x="10" y="10" width="306" height="143"/>
+        <text x="336" y="30" class="game-name">${recentGame.name}</text>
+        <text x="336" y="60" class="game-info">Playtime 2weeks: ${formatPlaytime(recentGame.playtime_2weeks)}</text>
+        <text x="336" y="90" class="game-info">Playtime forever: ${formatPlaytime(recentGame.playtime_forever)}</text>
+        <text x="336" y="120" class="game-info">Last played: ${formatLastPlayed(recentGame.last_played)}</text>
+        <text x="336" y="150" class="game-info">Achievements: ${recentGame.achievements.completed}/${recentGame.achievements.total}</text>
       </svg>
     `;
 
