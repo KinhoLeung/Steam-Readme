@@ -70,7 +70,9 @@ async function handler(req: http.IncomingMessage, res: http.ServerResponse) {
 
     res.writeHead(200, {
       'Content-Type': 'image/svg+xml',
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
+      'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+      'Pragma': 'no-cache',
+      'Expires': '0'
     });
     res.end(svg);
   } catch (error) {
