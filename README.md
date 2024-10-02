@@ -1,6 +1,6 @@
 # Steam-Readme
 
-这个项目的主要目的是为GitHub个人主页提供一个动态更新的Steam游戏状态展示,让其他人可以看到用户最近在玩什么游戏
+This project is designed to provide a dynamic display of a user's Steam gaming status for their GitHub personal profile. It allows others to see what games the user has been playing recently.
 
 ## Previews
 
@@ -23,7 +23,7 @@
 ## Deployment
 
 > [!NOTE]
-> 设置大约需要 5 分钟.
+> This will take approximately 5 minutes to set up.
 
 #### 0. Star This Repo (Mandatory) 🌟
 
@@ -51,7 +51,7 @@
 
 ![img](https://static.dingtalk.com/media/lALPM4AfJ3jWhLjNBcbNCgA_2560_1478.png)
 
-![1727837688785_FDE5A604-77F5-4e79-99C9-E155563C5808](https://images.oathblade.com/images/2024/10/02/536999aab0a24b3350ee567e69b37477.webp)
+![image-20241002202712773](https://images.oathblade.com/images/2024/10/02/9b4b5746e7b3ebc49500b33523816903.webp)
 
 ![image-20241002130213271](https://images.oathblade.com/images/2024/10/02/eca3688d3af3ae99df686ac7f2c38f65.webp)
 
@@ -59,16 +59,20 @@
 
 - Remember to add environment variables(STEAM_ID and STEAM_API_KEY)
 
-#### 4. Add to your Github 🚀
+#### 4. Add To Your Github  Readme🚀
 
-- Take mine as an example
-
+```html
 <div align="center">
   <a href="https://github.com/KinhoLeung/Steam-Readme">
     <picture>
-      <source media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" srcset="https://steam-readme.vercel.app?v=1&theme=light" />
-      <source media="(prefers-color-scheme: dark)" srcset="https://steam-readme.vercel.app?v=1&theme=dark" />
-      <img alt="Current Spotify Song" src="https://steam-readme.vercel.app?v=1&theme=light" /> 
+      <source media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" srcset="https://steam-readme.vercel.app?theme=light" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://steam-readme.vercel.app?theme=dark" />
+      <img alt="Current Spotify Song" src="https://steam-readme.vercel.app?theme=light" /> 
     </picture>
   </a>
 </div>
+```
+
+## Note
+
+This project is inspired by the [Spotify-Readme]([KinhoLeung/Spotify-Readme: A dynamic, customizable, and real-time Spotify now-playing widget that seamlessly integrates with your website or GitHub markdown files!](https://github.com/KinhoLeung/Spotify-Readme)), if you want to do secondary development, you can check the steam web api at this [URL](https://steamapi.xpaw.me/#IPlayerService).
