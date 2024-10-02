@@ -62,8 +62,9 @@ async function handler(req: http.IncomingMessage, res: http.ServerResponse) {
         <text x="336" y="30" class="game-name">${recentGame.name}</text>
         <text x="336" y="60" class="game-info">Playtime 2weeks: ${formatPlaytime(recentGame.playtime_2weeks)}</text>
         <text x="336" y="90" class="game-info">Playtime forever: ${formatPlaytime(recentGame.playtime_forever)}</text>
-        <text x="336" y="120" class="game-info">Last played: ${formatLastPlayed(recentGame.last_played)}</text>
+        <text x="336" y="120" class="game-info">Last playtime: ${formatLastPlayed(recentGame.last_playtime)}</text>
         <text x="336" y="150" class="game-info">Achievements: ${recentGame.achievements.completed}/${recentGame.achievements.total}</text>
+        <text x="0" y="0" visibility="hidden">${Date.now()}</text>
       </svg>
     `;
 

@@ -61,14 +61,15 @@ export async function fetchRecentGame(steamId: string, apiKey: string): Promise<
       totalAchievements = achievementsResponse.data.playerstats.achievements.length;
       completedAchievements = achievementsResponse.data.playerstats.achievements.filter((a: { achieved: number }) => a.achieved === 1).length;
     }
-
+    
     return {
       appid: mostRecentGame.appid,
       name: ownedGame.name,
       playtime_2weeks: mostRecentGame.playtime_2weeks,
       playtime_forever: mostRecentGame.playtime_forever,
+      //https://steamcdn-a.akamaihd.net/steam/apps/${mostRecentGame.appid}//library_600x900.jpg
       img_capsule_url: `https://steamcdn-a.akamaihd.net/steam/apps/${mostRecentGame.appid}/header.jpg`,
-      last_played: mostRecentGame.last_playtime,
+      last_playtime: mostRecentGame.last_playtime,
       achievements: {
         total: totalAchievements,
         completed: completedAchievements
