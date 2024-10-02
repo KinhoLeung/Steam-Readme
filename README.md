@@ -75,4 +75,4 @@ This project is designed to provide a dynamic display of a user's Steam gaming s
 
 ## Note
 
-This project is inspired by the [Spotify-Readme]([KinhoLeung/Spotify-Readme: A dynamic, customizable, and real-time Spotify now-playing widget that seamlessly integrates with your website or GitHub markdown files!](https://github.com/KinhoLeung/Spotify-Readme)), if you want to do secondary development, you can check the steam web api at this [URL](https://steamapi.xpaw.me/#IPlayerService).
+This project is inspired by the [Spotify-Readme](https://github.com/KinhoLeung/Spotify-Readme), if you want to do secondary development, you can check the steam web api at this [URL](https://steamapi.xpaw.me/#IPlayerService).
